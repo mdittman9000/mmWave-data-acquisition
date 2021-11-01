@@ -1,5 +1,6 @@
 import numpy as np
 import os
+import time
 import cv2
 
 
@@ -47,18 +48,51 @@ def get_video_type(filename):
     return VIDEO_TYPE['avi']
 
 
+def start_video_acquisition():
+    """
+    Function that starts video acquisition. This will serve as the entry point
+    to the camera data
+    :return: None
+    """
+    cap = cv2.VideoCapture(0)
+    out = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
 
-cap = cv2.VideoCapture(0)
-out = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
-
-while True:
-    ret, frame = cap.read()
-    out.write(frame)
-    cv2.imshow('frame',frame)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    while True:
+        ret, frame = cap.read()
+        out.write(frame)
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
 
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+def start_video_acquisition_timed(seconds=10):
+    """
+    Function that starts video acquisition. This will serve as the entry point
+    to the camera data
+    :param seconds: The number of seconds to capture video for (Default value of 10 seconds)
+    :return: None
+    """
+
+    # Get the current time
+    start_time = time.time()
+
+    # Store the elapsed time
+    elapsed_time = time.time() - start_time
+
+    cap = cv2.VideoCapture(0)
+    out = cv2.VideoWriter(filename, get_video_type(filename), 25, get_dims(cap, res))
+
+    # While the amount of time passed is less than how long we want to record video for
+    while elapsed_time < seconds:
+
+        # Continue to retrieve frames from the camera
+        ret, frame = cap.read()
+        out.write(frame)
+        cv2.imshow('frame', frame)
+        elapsed_time = int(time.time() - start_time)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    out.release()
+    cv2.destroyAllWindows()
