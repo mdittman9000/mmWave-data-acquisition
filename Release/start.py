@@ -4,8 +4,6 @@
 @author Michael Dittman
 
 Start script to serve as a debug interface for the camera and radar acquisition modules
-
-
 """
 
 import os
@@ -16,15 +14,15 @@ import camera
 
 print("Starting FPGA Configuration...")
 #os.system("DCA CALL")
-time.sleep(3)
+time.sleep(0)
 
 print("Setting up record delay...")
 #os.system("DCA CALL")
-time.sleep(3)
+time.sleep(0)
 
 print("Starting Radar Acquisition...")
 #os.system("DCA CALL")
-time.sleep(3)
+time.sleep(0)
 
 print("Starting Camera Acquisition")
 camera.start_video_acquisition_timed()

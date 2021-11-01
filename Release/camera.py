@@ -85,11 +85,30 @@ def start_video_acquisition_timed(seconds=10):
     # While the amount of time passed is less than how long we want to record video for
     while elapsed_time < seconds:
 
-        # Continue to retrieve frames from the camera
+        # Capture the frame
         ret, frame = cap.read()
+
+        # Write the frame to the screen (not necessary for Released version)
         out.write(frame)
+
+        # Font for time
+        font = cv2.FONT_HERSHEY_SIMPLEX
+
+        # What is the current time?
+        current_time = time.gmtime(time.time())
+
+        # Format the time
+        current_time_formatted = str(time.strftime("%Y-%m-%d %H:%M:%S", current_time))
+
+        cv2.putText(frame, current_time_formatted, (10, 30), font, 1, (255, 255, 255), 2, cv2.LINE_AA)
+
+        # Show the frame on the screen
         cv2.imshow('frame', frame)
+
+        # Calculate the time elapsed
         elapsed_time = int(time.time() - start_time)
+
+        # Allow for break key (testing on windows)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
