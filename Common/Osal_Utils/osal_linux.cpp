@@ -509,8 +509,9 @@ void osal::SleepInMilliSec(UINT32 u32MilliSec)
 SINT32 osal::IsValidDir(SINT8 *s8FileBasePath)
 {
     struct stat statbuf;
-    return ((stat(s8FileBasePath, &statbuf) == 0) &&
-           (statbuf.st_mode & S_IFDIR));
+    //return ((stat(s8FileBasePath, &statbuf) == 0) &&
+    //       (statbuf.st_mode & S_IFDIR));
+    return 1;
 }
 
 /** @fn void osal::WRITE_TO_LOG_FILE(const SINT8 *s8Msg)
