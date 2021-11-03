@@ -1,0 +1,11 @@
+Top-to-bottom swipe
+Bottom-to-top swipe
+Left-to-right swipe
+Right-to-left swipe
+Inward (towards sensor)
+Outward (away from sensor)
+Opened-to-closed (fingers to thumb)
+Closed-to-opened (fingers away from thumb)
+Twirling finger clockwise (CW)
+Twirling finger counterclockwise (CCW)
+Rubbing finger(s) back-n-forth across thumb
