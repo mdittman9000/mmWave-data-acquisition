@@ -10,30 +10,67 @@ import numpy as np
 import math
 
 class uartParserSDK():
-  #find various utility functions here for connecting to COM Ports, send data, etc...
-  #connect to com ports
-  # Call this function to connect to the comport. This takes arguments self (intrinsic), uartCom, and dataCom. No return, but sets internal variables in the parser object.
-  def connectComPorts(self, uartCom, dataCom):
-      self.uartCom = serial.Serial(uartCom, 115200,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,timeout=0.3)
-      if (self.capon3D == 1 and self.aop == 0):
-          self.dataCom = serial.Serial(dataCom, 921600*1,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,timeout=0.025)
-      else:
-          self.dataCom = serial.Serial(dataCom, 921600,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,timeout=0.025)
-      self.dataCom.reset_output_buffer()
-      print('Connected')
+    """
+    find various utility functions here for connecting to COM Ports, send data, etc...
+    connect to com ports
+    Call this function to connect to the comport.
+    This takes arguments self (intrinsic), uartCom, and dataCom. No return, but sets internal variables in the parser object.
+    """
 
-  #send cfg over uart
-  def sendCfg(self, cfg):
-      for line in cfg:
-          time.sleep(.1)
-          self.uartCom.write(line.encode())
-          ack = self.uartCom.readline()
-          print(ack)
-          ack = self.uartCom.readline()
-          print(ack)
-      time.sleep(3)
-      self.uartCom.reset_input_buffer()
-      self.uartCom.close()
+    def __init__(self):
+        """
+        Initialize a uart_parser
+        """
+        self.capon3D = 0
+        self.aop = 0
+        #self.uartCom = serial.Serial()
+        #self.dataCom = serial.Serial()
+        self.cfg = None
+
+    def connect_com_ports(self, uartCom, dataCom):
+        """
+        Connect the COM Ports
+        :param uartCom: Uart Port value or folder
+        :param dataCom: dataCom value or folder
+        :return:
+        """
+
+        # Set the uartCom as a serial object
+        # For linux this will end up looking like ... serial.Serial('/dev/ttyS1', 19200, timeout=1)
+        self.uartCom = serial.Serial(uartCom, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=0.3)
+        self.dataCom = serial.Serial(dataCom, 921600, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=0.025)
+        print(self.uartCom.name + " Connected")
+        print(self.dataCom.name + " Connected")
+
+    def get_cfg(self, path):
+        """
+        Get the cfg file
+        :param path:
+        :return:
+        """
+
+        # Set the file pointer to the file indicated by the path and enable it as read
+        self.cfg = open(path, 'r')
+
+    def send_cfg(self):
+        """
+        Send the chirp configuration file to the antenna
+        :param cfg: The file pointer of the chirp congiruation
+        :return: None
+        """
+
+        print("Sending config file...")
+
+        # For every line in the config file
+        for line in self.cfg:
+            print(line)
+            time.sleep(.1)
+            self.uartCom.write(line.encode())
+            ack = self.uartCom.readline()
+            print(ack)
+        time.sleep(3)
+        self.uartCom.reset_input_buffer()
+        self.uartCom.close()
     
     
 ####################################################################################################
@@ -43,7 +80,6 @@ import numpy as np
 import os
 import time
 import cv2
-
 
 filename = 'video.avi'
 frames_per_second = 24.0
@@ -156,3 +192,18 @@ def start_video_acquisition_timed(seconds=10):
     cap.release()
     out.release()
     cv2.destroyAllWindows()
+
+
+# Testing
+
+# Create a uartParserSDK object
+new_parser = uartParserSDK()
+
+# Connect its com ports (these are for my pc only)
+new_parser.connect_com_ports("COM11", "COM10")
+
+# Get the config file from the path (This path is true on my pc only)
+new_parser.get_cfg("D:\\Code Repository\\Python\\ECE 480 Senior Design\\repo\\mmWave-data-acquisition\\68xx-gesture.cfg")
+
+# Send the config file to the board
+new_parser.send_cfg()
