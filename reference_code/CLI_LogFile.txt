@@ -5878,3 +5878,345 @@ Record stop is done successfully
 
 Mon Jul 19 16:43:48 2021
 Stop Record command : Success
+
+Fri Nov 05 11:24:01 2021
+Reset AR Device Command (req)
+
+Fri Nov 05 11:24:01 2021
+Reset AR Device command : Success
+
+Fri Nov 05 11:24:01 2021
+Return status : 0
+
+Fri Nov 05 11:24:03 2021
+FPGA Configuration Command (req)
+
+Fri Nov 05 11:24:03 2021
+FPGA Configuration command : Success
+
+Fri Nov 05 11:24:03 2021
+Return status : 0
+
+Fri Nov 05 11:24:03 2021
+Configure Record Command (req)
+
+Fri Nov 05 11:24:03 2021
+Configure Record command : Success
+
+Fri Nov 05 11:24:03 2021
+Return status : 0
+
+Fri Nov 05 11:24:14 2021
+Start Record Command (req)
+
+Fri Nov 05 11:24:14 2021
+Start Record Command (req)
+
+Fri Nov 05 11:24:14 2021
+Start Record command : Success
+
+Fri Nov 05 11:24:14 2021
+Return status : 0
+
+Fri Nov 05 11:24:15 2021
+Start Record command : Success
+
+Fri Nov 05 11:25:55 2021
+Reset AR Device Command (req)
+
+Fri Nov 05 11:25:55 2021
+Reset AR Device command : Success
+
+Fri Nov 05 11:25:55 2021
+Return status : 0
+
+Fri Nov 05 11:25:57 2021
+FPGA Configuration Command (req)
+
+Fri Nov 05 11:25:57 2021
+FPGA Configuration command : Success
+
+Fri Nov 05 11:25:57 2021
+Return status : 0
+
+Fri Nov 05 11:25:57 2021
+Configure Record Command (req)
+
+Fri Nov 05 11:25:57 2021
+Configure Record command : Success
+
+Fri Nov 05 11:25:57 2021
+Return status : 0
+
+Fri Nov 05 11:26:07 2021
+Start Record Command (req)
+
+Fri Nov 05 11:26:08 2021
+Start Record Command (req)
+
+Fri Nov 05 11:26:08 2021
+Start Record command : Success
+
+Fri Nov 05 11:26:08 2021
+Return status : 0
+
+Fri Nov 05 11:26:08 2021
+Start Record command : Success
+
+Fri Nov 05 11:26:11 2021
+Stop Record Command (req)
+
+Fri Nov 05 11:26:11 2021
+Record stop is done successfully
+
+Fri Nov 05 11:26:12 2021
+Stop Record command : Success
+
+Fri Nov 05 11:29:54 2021
+Reset AR Device Command (req)
+
+Fri Nov 05 11:29:54 2021
+Reset AR Device command : Success
+
+Fri Nov 05 11:29:54 2021
+Return status : 0
+
+Fri Nov 05 11:29:56 2021
+FPGA Configuration Command (req)
+
+Fri Nov 05 11:29:56 2021
+FPGA Configuration command : Success
+
+Fri Nov 05 11:29:56 2021
+Return status : 0
+
+Fri Nov 05 11:29:56 2021
+Configure Record Command (req)
+
+Fri Nov 05 11:29:56 2021
+Configure Record command : Success
+
+Fri Nov 05 11:29:56 2021
+Return status : 0
+
+Fri Nov 05 11:30:07 2021
+Start Record Command (req)
+
+Fri Nov 05 11:30:07 2021
+Start Record Command (req)
+
+Fri Nov 05 11:30:07 2021
+Start Record command : Success
+
+Fri Nov 05 11:30:07 2021
+Return status : 0
+
+Fri Nov 05 11:30:08 2021
+Start Record command : Success
+
+Fri Nov 05 11:30:09 2021
+Stop Record Command (req)
+
+Fri Nov 05 11:30:09 2021
+Record stop is done successfully
+
+Fri Nov 05 11:30:09 2021
+Stop Record command : Success
+
+Fri Nov 05 11:32:02 2021
+Reset AR Device Command (req)
+
+Fri Nov 05 11:32:02 2021
+Reset AR Device command : Success
+
+Fri Nov 05 11:32:02 2021
+Return status : 0
+
+Fri Nov 05 11:32:04 2021
+FPGA Configuration Command (req)
+
+Fri Nov 05 11:32:04 2021
+FPGA Configuration command : Success
+
+Fri Nov 05 11:32:04 2021
+Return status : 0
+
+Fri Nov 05 11:32:04 2021
+Configure Record Command (req)
+
+Fri Nov 05 11:32:04 2021
+Configure Record command : Success
+
+Fri Nov 05 11:32:04 2021
+Return status : 0
+
+Fri Nov 05 11:32:29 2021
+Start Record Command (req)
+
+Fri Nov 05 11:32:29 2021
+Start Record Command (req)
+
+Fri Nov 05 11:32:29 2021
+Start Record command : Success
+
+Fri Nov 05 11:32:29 2021
+Return status : 0
+
+Fri Nov 05 11:32:29 2021
+Start Record command : Success
+
+Fri Nov 05 11:32:32 2021
+Stop Record Command (req)
+
+Fri Nov 05 11:32:32 2021
+Record stop is done successfully
+
+Fri Nov 05 11:32:33 2021
+Stop Record command : Success
+
+Tue Nov 09 18:24:14 2021
+Reset AR Device Command (req)
+
+Tue Nov 09 18:24:14 2021
+Reset AR Device command : Success
+
+Tue Nov 09 18:24:14 2021
+Return status : 0
+
+Tue Nov 09 18:24:16 2021
+FPGA Configuration Command (req)
+
+Tue Nov 09 18:24:16 2021
+FPGA Configuration command : Success
+
+Tue Nov 09 18:24:16 2021
+Return status : 0
+
+Tue Nov 09 18:24:16 2021
+Configure Record Command (req)
+
+Tue Nov 09 18:24:16 2021
+Configure Record command : Success
+
+Tue Nov 09 18:24:16 2021
+Return status : 0
+
+Tue Nov 09 18:24:36 2021
+Start Record Command (req)
+
+Tue Nov 09 18:24:36 2021
+Start Record Command (req)
+
+Tue Nov 09 18:24:36 2021
+Start Record command : Success
+
+Tue Nov 09 18:24:36 2021
+Return status : 0
+
+Tue Nov 09 18:24:37 2021
+Start Record command : Success
+
+Tue Nov 09 18:24:39 2021
+Stop Record Command (req)
+
+Tue Nov 09 18:24:39 2021
+Record stop is done successfully
+
+Tue Nov 09 18:24:40 2021
+Stop Record command : Success
+
+Tue Nov 09 18:27:02 2021
+Reset AR Device Command (req)
+
+Tue Nov 09 18:27:02 2021
+Reset AR Device command : Success
+
+Tue Nov 09 18:27:02 2021
+Return status : 0
+
+Tue Nov 09 18:27:04 2021
+FPGA Configuration Command (req)
+
+Tue Nov 09 18:27:04 2021
+FPGA Configuration command : Success
+
+Tue Nov 09 18:27:04 2021
+Return status : 0
+
+Tue Nov 09 18:27:04 2021
+Configure Record Command (req)
+
+Tue Nov 09 18:27:04 2021
+Configure Record command : Success
+
+Tue Nov 09 18:27:04 2021
+Return status : 0
+
+Tue Nov 09 18:27:30 2021
+Start Record Command (req)
+
+Tue Nov 09 18:27:30 2021
+Start Record Command (req)
+
+Tue Nov 09 18:27:30 2021
+Start Record command : Success
+
+Tue Nov 09 18:27:30 2021
+Return status : 0
+
+Tue Nov 09 18:27:31 2021
+Start Record command : Success
+
+Tue Nov 09 18:27:33 2021
+Stop Record Command (req)
+
+Tue Nov 09 18:27:33 2021
+Record stop is done successfully
+
+Tue Nov 09 18:27:34 2021
+Stop Record command : Success
+
+Tue Nov 09 18:27:34 2021
+stop_record
+
+Tue Nov 09 18:27:34 2021
+No record process is running.
+
+Wed Nov 10 19:18:50 2021
+Reset AR Device Command (req)
+
+Wed Nov 10 19:19:00 2021
+Reset AR Device : 
+Timeout Error! System disconnected
+
+Wed Nov 10 19:19:00 2021
+Return status : -5
+
+Wed Nov 10 19:19:02 2021
+FPGA Configuration Command (req)
+
+Wed Nov 10 19:19:12 2021
+FPGA Configuration : 
+Timeout Error! System disconnected
+
+Wed Nov 10 19:19:12 2021
+Return status : -5
+
+Wed Nov 10 19:19:12 2021
+Configure Record Command (req)
+
+Wed Nov 10 19:19:22 2021
+Configure Record : 
+Timeout Error! System disconnected
+
+Wed Nov 10 19:19:22 2021
+Return status : -5
+
+Wed Nov 10 19:24:23 2021
+Start Record Command (req)
+
+Wed Nov 10 19:24:33 2021
+System is disconnected.
+
+Wed Nov 10 19:24:33 2021
+Return status : -5

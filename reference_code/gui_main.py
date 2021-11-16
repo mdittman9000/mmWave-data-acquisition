@@ -1017,6 +1017,7 @@ class Window(QDialog):
             #Start raw data recording
             if(self.connectDCAStatus.text() == "Connected"):
                 os.system("DCA1000EVM_CLI_Control.exe start_record " + self.dcaJSON.text())
+                print("PRINTING HERE")
                 #self.raw_thread.startProcessing()
                 #self.raw_thread.fin.connect(self.rawDataProcessed)
 
@@ -1044,29 +1045,40 @@ class Window(QDialog):
 
         #Stop DCA1000 raw data capture
         try:
+
+            print("JSON IS" + self.dcaJSON.text() + "\n")
+            print("DCA Connection status is " + self.connectDCAStatus.text())
             if(self.connectDCAStatus.text() == "Connected"):
                 self.recordingStatus.setText('Processing Raw Data')
                 self.recordingStatus.setStyleSheet("color: green")
                 QApplication.processEvents()
 
+                print("JSON IS"  + self.dcaJSON.text())
+
                 os.system("DCA1000EVM_CLI_Control.exe stop_record " + self.dcaJSON.text())
-                #self.raw_thread.stopProcessing()
-                #self.raw_thread.fin.disconnect(self.rawDataProcessed)
-                shutil.move(self.rawDataSavePath + "\\adc_data_Raw_0.bin", self.fileName + "\\adcRawData.bin")
-                shutil.move(self.rawDataSavePath + "\\adc_data_Raw_LogFile.csv", self.fileName + "\\adcRawDataLog.csv")
+                self.raw_thread.stopProcessing()
+                self.raw_thread.fin.disconnect(self.rawDataProcessed)
+
+                #print(rawDataSavePath)
+
+                rawDataSavePath = "C:\\Users\\mditt\\Downloads\\Automated_Data_Capture_Tool_2.0\\data\\test"
+                print(rawDataSavePath)
+                #print(""self.fileName)
+                shutil.move(rawDataSavePath + "\\adc_data_Raw_0.bin", self.fileName + "\\adcRawData.bin")
+                shutil.move(rawDataSavePath + "\\adc_data_Raw_LogFile.csv", self.fileName + "\\adcRawDataLog.csv")
 
                 #TODO Implment this post-processing routine in python to allow for faster data processing
                 #proc_command = ("matlab -batch -nosplash -nodesktop -r \"run(ExtractFeatureVectors({}, {}, {}, {}, {}, {}')); exit;\"").format('68xx_fss',128, 64, 0.035,self.fileName + "\\adcRawData.bin", self.fileName + "\\adcExtractedData.csv")
-                proc_command = ("ExtractFeatureVectors.exe {} {} {} {} {} {}").format('68xx_fss',128, 64, self.lastTimeRecorded + 0.1, self.fileName + "\\adcRawData.bin", self.fileName + "\\adcExtractedData.csv")
+                #proc_command = ("ExtractFeatureVectors.exe {} {} {} {} {} {}").format('68xx_fss',128, 64, self.lastTimeRecorded + 0.1, self.fileName + "\\adcRawData.bin", self.fileName + "\\adcExtractedData.csv")
                 
-                if not self.skipProcessRawData.isChecked():
-                    print(proc_command)
-                    os.system(proc_command)
-                else:
-                    print("Skipping raw data processing")
+                #if not self.skipProcessRawData.isChecked():
+                 #   print(proc_command)
+                #    os.system(proc_command)
+                #else:
+                #    print("Skipping raw data processing")
         except:
             print("Error: ", sys.exc_info()[0])
-            print("Failed to process raw data")
+            print("x Failed to process raw data")
 
         #Set text
         self.recordingStatus.setText('Idle')

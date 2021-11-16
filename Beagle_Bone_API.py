@@ -194,13 +194,99 @@ def start_video_acquisition_timed(seconds=10):
     cv2.destroyAllWindows()
 
 
+def configure_fpga(json_file_path):
+    """
+    API function to call from interface to configure the fpga with a given json_file
+    Special notes : This function does not properly format the json_file_path. It is assumed
+    that all paths passed to this function are well-formed
+    :param json_file_path: The json file the use to configure the fpga
+    :return: None
+    """
+
+    print("Configuring fpga...")
+    os.system("./DCA1000EVM_CLI_Control fpga " + json_file_path)
+    time.sleep(1)
+
+# Individual functions that can be used to configure the board
+
+
+def record_delay(json_file_path):
+    """
+    API function to call from interface to configure the record delay with a given json_file
+    Special notes : This function does not properly format the json_file_path. It is assumed
+    that all paths passed to this function are well-formed
+    :param json_file_path: The json file the use to configure the record delay
+    :return: None
+    """
+
+    print("Configuring record delay...")
+    os.system("./DCA1000EVM_CLI_Control record " + json_file_path)
+    time.sleep(1)
+
+
+def start_record(json_file_path):
+    """
+    API function to call from interface to start a radar record with a given json file
+    Special notes : This function does not properly format the json_file_path. It is assumed
+    that all paths passed to this function are well-formed
+    :param json_file_path: The json file the used to start a record
+    :return: None
+    """
+
+    print("Starting record")
+    os.system("./DCA1000EVM_CLI_Control start_record " + json_file_path)
+    time.sleep(1)
+
+
+def stop_record(json_file_path):
+    """
+    API function to call from interface to stop a radar record with a given json file
+    Special notes : This function does not properly format the json_file_path. It is assumed
+    that all paths passed to this function are well-formed
+    :param json_file_path: The json file the used to stop a record
+    :return: None
+    """
+
+    print("Stopping record")
+    os.system("./DCA1000EVM_CLI_Control stop_record " + json_file_path)
+    time.sleep(1)
+# In order to have a proper startup sequence 3 commands from the CLI must be called. fpga, record, start_record
+# Instead of using the above individual commands, minus the stop_record command. The startup sequence can be
+# called
+
+
+def radar_record_start(json_file_path):
+    """
+    Function to intitiate the startup sequence of a radar record
+    Special notes : This function does not properly format the json_file_path. It is assumed
+    that all paths passed to this function are well-formed
+    :param json_file_path: The json file the used to stop a record
+    :return:
+    """
+
+    # FPGA
+
+    print("Configuring fpga...")
+    os.system("./DCA1000EVM_CLI_Control fpga " + json_file_path)
+    time.sleep(1)
+
+    # Record delay
+    print("Configuring record delay...")
+    os.system("./DCA1000EVM_CLI_Control record " + json_file_path)
+    time.sleep(1)
+
+    # Start_record
+    print("Starting record")
+    os.system("./DCA1000EVM_CLI_Control start_record " + json_file_path)
+    time.sleep(1)
+
 # Testing
 
 # Create a uartParserSDK object
 new_parser = uartParserSDK()
 
 # Connect its com ports (these are for my pc only)
-new_parser.connect_com_ports("COM11", "COM10")
+new_parser.connect_com_ports("", "COM10")
 
 # Get the config file from the path (This path is true on my pc only)
 new_parser.get_cfg("D:\\Code Repository\\Python\\ECE 480 Senior Design\\repo\\mmWave-data-acquisition\\68xx-gesture.cfg")
