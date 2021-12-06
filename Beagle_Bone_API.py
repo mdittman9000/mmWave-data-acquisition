@@ -64,7 +64,7 @@ class uartParserSDK():
         # For every line in the config file
         for line in self.cfg:
             print(line)
-            time.sleep(.1)
+            #time.sleep(.1)
             self.uartCom.write(line.encode())
             ack = self.uartCom.readline()
             print(ack)
@@ -266,6 +266,9 @@ def radar_record_start(json_file_path):
 
     # FPGA
 
+    print("Resetting AR device...")
+    os.system("./DCA1000EVM_CLI_Control reset_ar_device " + json_file_path)
+
     print("Configuring fpga...")
     os.system("./DCA1000EVM_CLI_Control fpga " + json_file_path)
     time.sleep(1)
@@ -276,20 +279,90 @@ def radar_record_start(json_file_path):
     time.sleep(1)
 
     # Start_record
-    print("Starting record")
+    print("Starting record...")
     os.system("./DCA1000EVM_CLI_Control start_record " + json_file_path)
     time.sleep(1)
 
+    print("Starting camera record...")
+    start_video_acquisition_timed()
+    
+
+
+def connect_com_ports(uartCom, dataCom):
+	"""
+	Connect the COM Ports
+	:param uartCom: Uart Port value or folder
+	:param dataCom: dataCom value or folder
+	:return:
+	"""
+
+	# Set the uartCom as a serial object
+	# For linux this will end up looking like ... serial.Serial('/dev/ttyS1', 19200, timeout=1)
+	connected_uartCom = serial.Serial(uartCom, 115200, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=0.3)
+	connected_dataCom = serial.Serial(dataCom, 921600, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=0.025)
+	print(connected_uartCom.name + " Connected")
+	print(connected_dataCom.name + " Connected")
+
+	return connected_uartCom
+
+def get_cfg(path):
+     """
+     Get the cfg file
+     :param path:
+     :return:
+     """
+
+     # Set the file pointer to the file indicated by the path and enable it as read
+     cfg = open(path, 'r')
+     return cfg
+
+def send_cfg(cfg, uartCom):
+     """
+     Send the chirp configuration file to the antenna
+     :param cfg: The file pointer of the chirp congiruation
+     :return: None
+     """
+
+     print("Sending config file...")
+
+     # For every line in the config file
+     for line in cfg:
+	print(line)
+	time.sleep(.1)
+        uartCom.write(line.encode())
+        ack = uartCom.readline()
+        print(ack)
+        #time.sleep(3)
+	
+     uartCom.reset_input_buffer()
+     uartCom.close()
+
+
+def send_sensor_start(uart_port):
+    start = "sensorStart"
+    uart_port.write(start.encode(encoding = 'UTF-8'))
+    ack = uart_port.readline()
+    print(ack)
+
+def send_sensor_stop(uart_port):
+    stop = "sensorStop"
+    uart_port.write(stop.encode(encoding = 'UTF-8'))
+    ack = uart_port.readline()
+    print(ack)
+
 # Testing
 
+# Create a uartParserSDK objec
+
+
 # Create a uartParserSDK object
-new_parser = uartParserSDK()
+# new_parser = uartParserSDK()
 
 # Connect its com ports (these are for my pc only)
-new_parser.connect_com_ports("", "COM10")
+# new_parser.connect_com_ports("/dev/ttyACM0", "/dev/ttyACM1")
 
 # Get the config file from the path (This path is true on my pc only)
-new_parser.get_cfg("D:\\Code Repository\\Python\\ECE 480 Senior Design\\repo\\mmWave-data-acquisition\\68xx-gesture.cfg")
+# new_parser.get_cfg("/home/debian/chirp.cfg")
 
 # Send the config file to the board
-new_parser.send_cfg()
+# new_parser.send_cfg()
