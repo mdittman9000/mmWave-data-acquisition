@@ -18,8 +18,12 @@ car_cascade_profile = cv2.CascadeClassifier('cas1.xml')
 stop_sign_cascade_profile = cv2.CascadeClassifier('stop_sign.xml')
 traffic_light_cascade_profile = cv2.CascadeClassifier('traffic_light.xml')
 
-
 cap = cv2.VideoCapture(0)
+
+frame_width = int(cap.get(3))
+frame_height = int(cap.get(4))
+
+out = cv2.VideoWriter('output.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
 while True:
 
@@ -88,6 +92,8 @@ while True:
         roi_color = img[y:y + h, x:x + w]
 
     cv2.imshow('img', img)
+
+    out.write(img)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
